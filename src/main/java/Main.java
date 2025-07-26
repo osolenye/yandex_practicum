@@ -1,8 +1,8 @@
-import type_importance.WrapperClasses;
+import type_importance.LinkAndPrimitive;
 
 public class Main {
     public static void main(String[] args) {
-        WrapperClasses wrapperClasses = new WrapperClasses();
-        wrapperClasses.example();
+        LinkAndPrimitive linkAndPrimitive = new LinkAndPrimitive();
+        linkAndPrimitive.example();
     }
 }
