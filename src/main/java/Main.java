@@ -1,5 +1,8 @@
+import type_importance.WrapperClasses;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("раз раз раз проверка");
+        WrapperClasses wrapperClasses = new WrapperClasses();
+        wrapperClasses.example();
     }
 }
