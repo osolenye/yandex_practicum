@@ -27,7 +27,7 @@ class MonthData {
 }
 class Day {
     private int stepCounter;
-    private int stepGoal;
+    private int stepGoal = 10000;
 
     public int getStepCounter() {
         return stepCounter;

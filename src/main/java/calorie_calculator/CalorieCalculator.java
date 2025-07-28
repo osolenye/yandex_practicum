@@ -18,6 +18,8 @@ public class CalorieCalculator {
                 break;
             } else if (userInput == 1) {
                 stepCountInput();
+            } else if (userInput == 2) {
+                getMonthStats();
             }
         }
     }
@@ -52,5 +54,23 @@ public class CalorieCalculator {
 
             stepTracker.setMonthToData(monthToData);
         }
+    }
+
+    public void getMonthStats() {
+        String monthNumberString = scanner.nextLine();
+        int monthNumber =  Integer.parseInt(monthNumberString);
+        MonthData monthData = stepTracker.getMonthToData().get(monthNumber);
+        ArrayList<Day> days = monthData.getDays();
+        int num;
+        int stepForMonth = 0;
+        for (Day day : days) {
+            num = 1;
+            System.out.println(num + " день: " + day.getStepCounter());
+            stepForMonth += day.getStepCounter();
+        }
+        System.out.println(stepForMonth);
+        System.out.println(stepForMonth / 30);
+        System.out.println("km: " + stepForMonth * 0.75);
+        System.out.println("calories spet: " + (stepForMonth * 50) / 1000);
     }
 }
