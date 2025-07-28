@@ -73,4 +73,5 @@ public class CalorieCalculator {
         System.out.println("km: " + stepForMonth * 0.75);
         System.out.println("calories spet: " + (stepForMonth * 50) / 1000);
     }
+
 }
