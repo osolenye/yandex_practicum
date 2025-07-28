@@ -1,8 +1,8 @@
-import lists.JavaHashTables;
+import calorie_calculator.CalorieCalculator;
 
 public class Main {
     public static void main(String[] args) {
-        JavaHashTables javaHashTables = new JavaHashTables();
-        javaHashTables.example();
+        CalorieCalculator  calc = new CalorieCalculator();
+        calc.example();
     }
 }
