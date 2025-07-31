@@ -1,4 +1,4 @@
-package primitive_operations;
+package sprint1.primitive_operations;
 
 public class DifferentTypeOperations {
     public void example() {

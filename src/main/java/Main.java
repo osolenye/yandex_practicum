@@ -1,4 +1,4 @@
-import accounting.Accounting;
+import sprint1.accounting.Accounting;
 
 public class Main {
     public static void main(String[] args) {

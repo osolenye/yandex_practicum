@@ -1,6 +1,5 @@
-package lists;
+package sprint1.lists;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class JavaHashTables {

@@ -1,4 +1,4 @@
-package type_importance;
+package sprint1.type_importance;
 
 public class LinkAndPrimitive {
     public void example() {

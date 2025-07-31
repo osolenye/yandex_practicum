@@ -1,4 +1,4 @@
-package lists;
+package sprint1.lists;
 
 
 import java.util.ArrayList;

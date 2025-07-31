@@ -1,4 +1,4 @@
-package calorie_calculator;
+package sprint1.calorie_calculator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
