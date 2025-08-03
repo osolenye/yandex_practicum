@@ -15,6 +15,7 @@ class Animal {
     protected int age;
     protected int heartRate;
     protected boolean isWild;
+    private String yes = "this will not go to the child classes";
 
     public Animal() {
         weight = 0.0;
@@ -44,10 +45,16 @@ class Fox extends Canidae {
     protected String color;
 
     public Fox() {
+        super();
         color = "red";
     }
 
     public String toFox() {
         return "hehehe";
+    }
+
+    @Override
+    public String growl() {
+        return "i can't growl sadly";
     }
 }
