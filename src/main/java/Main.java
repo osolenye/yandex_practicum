@@ -1,8 +1,9 @@
-import sprint1.accounting.Accounting;
+import sprint2.Inheritance;
 
 public class Main {
     public static void main(String[] args) {
-        Accounting accounting = new Accounting();
-        accounting.example();
+        Inheritance inheritance = new Inheritance();
+        inheritance.example();
     }
 }
+
