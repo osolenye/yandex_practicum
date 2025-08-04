@@ -120,6 +120,8 @@ public class FinalProject {
         scanner.nextLine();
         if (userInput == 1) {
             changeSimpleTask();
+        } else if (userInput == 2) {
+            changeEpicTask();
         }
     }
     private void changeSimpleTask() {
@@ -152,5 +154,39 @@ public class FinalProject {
         taskToChange.setDescription(description);
         taskToChange.setStatus(taskStatus);
         tasks.add(taskToChange);
+    }
+
+    private void changeEpicTask() {
+        System.out.println("Введите айди задачи:");
+        int taskId = scanner.nextInt();
+        scanner.nextLine();
+
+        EpicTask taskToChange = new EpicTask();
+        for (EpicTask epicTask : epicTasks.values()) {
+            if (epicTask.getId() == taskId) {
+                taskToChange.setName(epicTask.getName());
+                taskToChange.setDescription(epicTask.getDescription());
+                taskToChange.setId(taskId);
+                taskToChange.setStatus(epicTask.getStatus());
+                taskToChange.setSubTasks(epicTask.getSubTasks());
+                epicTasks.remove(epicTask);
+                break;
+            }
+        }
+
+        String name;
+        String description;
+        Task.TaskStatus taskStatus;
+        System.out.println("new name: ");
+        name = scanner.nextLine();
+        System.out.println("new description: ");
+        description = scanner.nextLine();
+        System.out.println("new status: ");
+        taskStatus = Task.TaskStatus.valueOf(scanner.nextLine());
+
+        taskToChange.setName(name);
+        taskToChange.setDescription(description);
+        taskToChange.setStatus(taskStatus);
+        epicTasks.put(taskToChange.getId(), taskToChange);
     }
 }
