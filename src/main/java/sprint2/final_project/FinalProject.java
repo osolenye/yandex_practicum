@@ -22,7 +22,7 @@ public class FinalProject {
             if (userInput == 1) {
                 createTask();
             } else if (userInput == 2) {
-
+                changeTask();
             } else if (userInput == 3) {
                 printTasks();
             }
@@ -109,5 +109,48 @@ public class FinalProject {
         } else if (userInput == 3) {
             System.out.println(subTasks.toString());
         }
+    }
+
+    private void changeTask() {
+        System.out.println("Чтобы изменить задачу нажмите 1");
+        System.out.println("Чтобы изменить epic задачу нажмите 2");
+        System.out.println("Чтобы изменить sub задачу нажмите 3");
+
+        int userInput = scanner.nextInt();
+        scanner.nextLine();
+        if (userInput == 1) {
+            changeSimpleTask();
+        }
+    }
+    private void changeSimpleTask() {
+        System.out.println("Введите айди задачи:");
+        int taskId = scanner.nextInt();
+        scanner.nextLine();
+
+        Task taskToChange = new Task();
+        for (Task task : tasks) {
+            if (task.getId() == taskId) {
+                taskToChange.setName(task.getName());
+                taskToChange.setDescription(task.getDescription());
+                taskToChange.setId(taskId);
+                taskToChange.setStatus(task.getStatus());
+                tasks.remove(task);
+                break;
+            }
+        }
+        String name;
+        String description;
+        Task.TaskStatus taskStatus;
+        System.out.println("new name: ");
+        name = scanner.nextLine();
+        System.out.println("new description: ");
+        description = scanner.nextLine();
+        System.out.println("new status: ");
+        taskStatus = Task.TaskStatus.valueOf(scanner.nextLine());
+
+        taskToChange.setName(name);
+        taskToChange.setDescription(description);
+        taskToChange.setStatus(taskStatus);
+        tasks.add(taskToChange);
     }
 }
