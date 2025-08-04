@@ -32,9 +32,10 @@ public class SubTask extends Task{
         return Objects.equals(epicTask, subTask.epicTask);
     }
 
+
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), epicTask);
+        return Objects.hash(super.name, super.description, super.id, super.status, epicTask);
     }
 
     @Override

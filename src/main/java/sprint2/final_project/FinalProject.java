@@ -8,7 +8,7 @@ public class FinalProject {
 
     private ArrayList<Task> tasks = new ArrayList<>();
     private HashMap<Integer, EpicTask> epicTasks = new HashMap<>();
-    private ArrayList<SubTask> subTasks;
+    private ArrayList<SubTask> subTasks = new ArrayList<>();
 
     public void example() {
         System.out.println("Чтобы завершить программу нажмите 0");
@@ -69,7 +69,7 @@ public class FinalProject {
         String description = scanner.nextLine();
 
         EpicTask epicTask = new EpicTask(name, description);
-        epicTasks.put(epicTask.hashCode(), epicTask);
+        epicTasks.put(epicTask.getId(), epicTask);
     }
     private void createSubTask() {
         System.out.println("Имя задачи:");
@@ -78,17 +78,14 @@ public class FinalProject {
         System.out.println("Описание задачи:");
         String description = scanner.nextLine();
 
-        System.out.println(epicTasks);
 
         System.out.println("Айди эпик задачи:");
         int id = scanner.nextInt();
         scanner.nextLine();
 
         EpicTask epicTask = epicTasks.get(id);
-        System.out.println(epicTask.toString());
 
         SubTask subTask = new SubTask(name, description, epicTask);
-        System.out.println(subTask.toString());
 
         subTasks.add(subTask);
     }

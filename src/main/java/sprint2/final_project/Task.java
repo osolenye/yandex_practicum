@@ -3,10 +3,10 @@ package sprint2.final_project;
 import java.util.Objects;
 
 public class Task {
-    private String name;
-    private String description;
-    private int id;
-    private TaskStatus status;
+    protected String name;
+    protected String description;
+    protected int id;
+    protected TaskStatus status;
 
 
     enum TaskStatus {
