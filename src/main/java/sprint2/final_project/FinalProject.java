@@ -21,6 +21,10 @@ public class FinalProject {
             scanner.nextLine();
             if (userInput == 1) {
                 createTask();
+            } else if (userInput == 2) {
+
+            } else if (userInput == 3) {
+                printTasks();
             }
         }
     }
@@ -88,5 +92,22 @@ public class FinalProject {
         SubTask subTask = new SubTask(name, description, epicTask);
 
         subTasks.add(subTask);
+    }
+
+
+    private void printTasks() {
+        System.out.println("Чтобы вывести задачи введите 1");
+        System.out.println("Чтобы вывести epic задачи введите 2");
+        System.out.println("Чтобы вывести sub задачи введите 3");
+
+        int  userInput = scanner.nextInt();
+        scanner.nextLine();
+        if  (userInput == 1) {
+            System.out.println(tasks.toString());
+        } else if (userInput == 2) {
+            System.out.println(epicTasks.toString());
+        } else if (userInput == 3) {
+            System.out.println(subTasks.toString());
+        }
     }
 }
