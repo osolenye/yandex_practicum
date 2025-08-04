@@ -14,11 +14,11 @@ public class Task {
     }
 
 
-    public Task(String name, String description, int id, TaskStatus status) {
+    public Task(String name, String description) {
         this.name = name;
         this.description = description;
-        this.id = id;
-        this.status = status;
+        this.id = this.hashCode();
+        this.status = TaskStatus.NEW;
     }
 
     public Task() {
