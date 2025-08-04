@@ -1,12 +1,13 @@
 package sprint2.final_project;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class FinalProject {
     Scanner scanner = new Scanner(System.in);
 
     private ArrayList<Task> tasks = new ArrayList<>();
-    private ArrayList<EpicTask> epicTasks = new ArrayList<>();
+    private HashMap<Integer, EpicTask> epicTasks = new HashMap<>();
     private ArrayList<SubTask> subTasks;
 
     public void example() {
@@ -37,12 +38,18 @@ public class FinalProject {
 
     private void createTask() {
         System.out.println("Чтобы создать задачу нажмите 1");
-        System.out.println("Чтобы создать под задачу нажмите 1");
-        System.out.println("Чтобы создать эпик задачу нажмите 1");
+        System.out.println("Чтобы создать эпик задачу нажмите 2");
+        System.out.println("Чтобы создать под задачу нажмите 3");
 
         int  userInput = scanner.nextInt();
         scanner.nextLine();
-        createSimpleTask();
+        if (userInput == 1) {
+            createSimpleTask();
+        } else if (userInput == 2) {
+            createEpicTask();
+        } else if (userInput == 3) {
+            createSubTask();
+        }
     }
     private void createSimpleTask() {
         System.out.println("Имя задачи:");
@@ -52,6 +59,37 @@ public class FinalProject {
         String description = scanner.nextLine();
 
         Task task = new Task(name, description);
-        System.out.println(task.toString());
+        tasks.add(task);
+    }
+    private void createEpicTask() {
+        System.out.println("Имя задачи:");
+        String name = scanner.nextLine();
+
+        System.out.println("Описание задачи:");
+        String description = scanner.nextLine();
+
+        EpicTask epicTask = new EpicTask(name, description);
+        epicTasks.put(epicTask.hashCode(), epicTask);
+    }
+    private void createSubTask() {
+        System.out.println("Имя задачи:");
+        String name = scanner.nextLine();
+
+        System.out.println("Описание задачи:");
+        String description = scanner.nextLine();
+
+        System.out.println(epicTasks);
+
+        System.out.println("Айди эпик задачи:");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        EpicTask epicTask = epicTasks.get(id);
+        System.out.println(epicTask.toString());
+
+        SubTask subTask = new SubTask(name, description, epicTask);
+        System.out.println(subTask.toString());
+
+        subTasks.add(subTask);
     }
 }

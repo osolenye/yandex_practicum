@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class EpicTask extends Task{
-    ArrayList<SubTask> subTasks;
+    ArrayList<SubTask> subTasks = new ArrayList<>();
 
-    public EpicTask(String name, String description, int id, TaskStatus status, ArrayList<SubTask> subTasks) {
+    public EpicTask(String name, String description) {
         super(name, description);
         this.subTasks = subTasks;
     }
@@ -41,7 +41,7 @@ public class EpicTask extends Task{
 
     @Override
     public String toString() {
-        return "EpicTask{" +
+        return super.toString() +
                 "subTasks=" + subTasks +
                 '}';
     }
