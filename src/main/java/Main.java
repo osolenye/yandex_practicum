@@ -1,9 +1,9 @@
-import sprint2.final_project.FinalProject;
+import sprint3.Constants;
 
 public class Main {
     public static void main(String[] args) {
-        FinalProject fp = new FinalProject();
-        fp.example();
+        Constants constants = new Constants();
+        constants.example();
     }
 }
 
