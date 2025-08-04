@@ -8,7 +8,6 @@ public class FinalProject {
         int userInput = scanner.nextInt();
         scanner.nextLine();
         while (userInput != 0) {
-
         }
     }
 
@@ -20,5 +19,6 @@ public class FinalProject {
         System.out.println("Чтобы удалить задачу по идентификатору нажмите 5");
         System.out.println("Чтобы удалить все задачи нажмите 6");
         System.out.println("Чтобы получить все подзадачи эпика нажмите 7");
+        System.out.println("Чтобы выйти из программы нажмите 0");
     }
 }
