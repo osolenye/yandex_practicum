@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class FinalProject {
+public class InMemoryTaskManager implements TaskManager{
     Scanner scanner = new Scanner(System.in);
 
     private ArrayList<Task> tasks = new ArrayList<>();
     private HashMap<Integer, EpicTask> epicTasks = new HashMap<>();
     private ArrayList<SubTask> subTasks = new ArrayList<>();
 
+    @Override
     public void example() {
         System.out.println("Чтобы завершить программу нажмите 0");
         System.out.println("Чтобы начать нажмите 1");
@@ -26,11 +27,20 @@ public class FinalProject {
                 changeTask();
             } else if (userInput == 3) {
                 printTasks();
+            } else if (userInput == 4) {
+                getTaskById();
+            } else if (userInput == 5) {
+                deleteTaskById();
+            } else if (userInput == 6) {
+                deleteAllTasks();
+            } else if (userInput == 7) {
+                getAllSubtasksOfEpic();
             }
         }
     }
 
-    private void printOptions() {
+    @Override
+    public void printOptions() {
         System.out.println("Чтобы создать задачу нажмите 1");
         System.out.println("Чтобы изменить задачу нажмите 2");
         System.out.println("Чтобы вывести список задач нажмите 3");
@@ -41,7 +51,8 @@ public class FinalProject {
         System.out.println("Чтобы выйти из программы нажмите 0");
     }
 
-    private void createTask() {
+    @Override
+    public void createTask() {
         System.out.println("Чтобы создать задачу нажмите 1");
         System.out.println("Чтобы создать эпик задачу нажмите 2");
         System.out.println("Чтобы создать под задачу нажмите 3");
@@ -56,7 +67,9 @@ public class FinalProject {
             createSubTask();
         }
     }
-    private void createSimpleTask() {
+
+    @Override
+    public void createSimpleTask() {
         System.out.println("Имя задачи:");
         String name = scanner.nextLine();
 
@@ -66,7 +79,8 @@ public class FinalProject {
         Task task = new Task(name, description);
         tasks.add(task);
     }
-    private void createEpicTask() {
+    @Override
+    public void createEpicTask() {
         System.out.println("Имя задачи:");
         String name = scanner.nextLine();
 
@@ -76,7 +90,9 @@ public class FinalProject {
         EpicTask epicTask = new EpicTask(name, description);
         epicTasks.put(epicTask.getId(), epicTask);
     }
-    private void createSubTask() {
+
+    @Override
+    public void createSubTask() {
         System.out.println("Имя задачи:");
         String name = scanner.nextLine();
 
@@ -95,8 +111,8 @@ public class FinalProject {
         subTasks.add(subTask);
     }
 
-
-    private void printTasks() {
+    @Override
+    public void printTasks() {
         System.out.println("Чтобы вывести задачи введите 1");
         System.out.println("Чтобы вывести epic задачи введите 2");
         System.out.println("Чтобы вывести sub задачи введите 3");
@@ -112,7 +128,8 @@ public class FinalProject {
         }
     }
 
-    private void changeTask() {
+    @Override
+    public void changeTask() {
         System.out.println("Чтобы изменить задачу нажмите 1");
         System.out.println("Чтобы изменить epic задачу нажмите 2");
         System.out.println("Чтобы изменить sub задачу нажмите 3");
@@ -127,7 +144,9 @@ public class FinalProject {
             changeSubTask();
         }
     }
-    private void changeSimpleTask() {
+
+    @Override
+    public void changeSimpleTask() {
         System.out.println("Введите айди задачи:");
         int taskId = scanner.nextInt();
         scanner.nextLine();
@@ -159,7 +178,8 @@ public class FinalProject {
         tasks.add(taskToChange);
     }
 
-    private void changeEpicTask() {
+    @Override
+    public void changeEpicTask() {
         System.out.println("Введите айди задачи:");
         int taskId = scanner.nextInt();
         scanner.nextLine();
@@ -193,8 +213,8 @@ public class FinalProject {
         epicTasks.put(taskToChange.getId(), taskToChange);
     }
 
-
-    private void changeSubTask() {
+    @Override
+    public void changeSubTask() {
         System.out.println("Введите айди задачи:");
         int taskId = scanner.nextInt();
         scanner.nextLine();
@@ -224,5 +244,91 @@ public class FinalProject {
         taskToChange.setDescription(description);
         taskToChange.setStatus(taskStatus);
         subTasks.add(taskToChange);
+    }
+
+    @Override
+    public void getTaskById() {
+        System.out.println("Введите тип задачи:");
+        System.out.println("1 - обычная задача");
+        System.out.println("2 - epic задача");
+        System.out.println("3 - sub задача");
+        int type = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Введите айди задачи:");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        if (type == 1) {
+            for (Task task : tasks) {
+                if (task.getId() == id) {
+                    System.out.println(task);
+                    return;
+                }
+            }
+            System.out.println("Задача не найдена");
+        } else if (type == 2) {
+            EpicTask epicTask = epicTasks.get(id);
+            if (epicTask != null) {
+                System.out.println(epicTask);
+            } else {
+                System.out.println("Epic задача не найдена");
+            }
+        } else if (type == 3) {
+            for (SubTask subTask : subTasks) {
+                if (subTask.getId() == id) {
+                    System.out.println(subTask);
+                    return;
+                }
+            }
+            System.out.println("Sub задача не найдена");
+        }
+    }
+
+    @Override
+    public void deleteTaskById() {
+        System.out.println("Введите тип задачи для удаления:");
+        System.out.println("1 - обычная задача");
+        System.out.println("2 - epic задача");
+        System.out.println("3 - sub задача");
+        int type = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Введите айди задачи:");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        if (type == 1) {
+            tasks.removeIf(task -> task.getId() == id);
+            System.out.println("Удалено (если существовало).");
+        } else if (type == 2) {
+            epicTasks.remove(id);
+            System.out.println("Удалено (если существовало).");
+        } else if (type == 3) {
+            subTasks.removeIf(subTask -> subTask.getId() == id);
+            System.out.println("Удалено (если существовало).");
+        }
+    }
+
+    @Override
+    public void deleteAllTasks() {
+        tasks.clear();
+        epicTasks.clear();
+        subTasks.clear();
+        System.out.println("Все задачи удалены.");
+    }
+
+    @Override
+    public void getAllSubtasksOfEpic() {
+        System.out.println("Введите айди epic задачи:");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        EpicTask epicTask = epicTasks.get(id);
+        if (epicTask != null) {
+            System.out.println(epicTask.getSubTasks());
+        } else {
+            System.out.println("Epic задача не найдена.");
+        }
     }
 }
