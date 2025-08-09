@@ -2,14 +2,17 @@ package sprint3.final_project;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
-public class InMemoryTaskManager implements TaskManager{
+public class InMemoryTaskManager implements TaskManager, HistoryManager{
     Scanner scanner = new Scanner(System.in);
 
     private ArrayList<Task> tasks = new ArrayList<>();
     private HashMap<Integer, EpicTask> epicTasks = new HashMap<>();
     private ArrayList<SubTask> subTasks = new ArrayList<>();
+
+    List<AbstractTask> history = new ArrayList<>();
 
     @Override
     public void example() {
@@ -35,6 +38,8 @@ public class InMemoryTaskManager implements TaskManager{
                 deleteAllTasks();
             } else if (userInput == 7) {
                 getAllSubtasksOfEpic();
+            } else if (userInput == 8) {
+                System.out.println(history());
             }
         }
     }
@@ -48,6 +53,7 @@ public class InMemoryTaskManager implements TaskManager{
         System.out.println("Чтобы удалить задачу по идентификатору нажмите 5");
         System.out.println("Чтобы удалить все задачи нажмите 6");
         System.out.println("Чтобы получить все подзадачи эпика нажмите 7");
+        System.out.println("Чтобы получить историю просмотра задач нажмите 8");
         System.out.println("Чтобы выйти из программы нажмите 0");
     }
 
@@ -263,6 +269,13 @@ public class InMemoryTaskManager implements TaskManager{
             for (Task task : tasks) {
                 if (task.getId() == id) {
                     System.out.println(task);
+                    AbstractTask abstractTask = task;
+                    if (history.size() >= 10) {
+                        history.remove(0);
+                        history.add(abstractTask);
+                    } else {
+                        history.add(abstractTask);
+                    }
                     return;
                 }
             }
@@ -271,6 +284,13 @@ public class InMemoryTaskManager implements TaskManager{
             EpicTask epicTask = epicTasks.get(id);
             if (epicTask != null) {
                 System.out.println(epicTask);
+                AbstractTask abstractTask = epicTask;
+                if (history.size() >= 10) {
+                    history.remove(0);
+                    history.add(abstractTask);
+                } else {
+                    history.add(abstractTask);
+                }
             } else {
                 System.out.println("Epic задача не найдена");
             }
@@ -278,6 +298,13 @@ public class InMemoryTaskManager implements TaskManager{
             for (SubTask subTask : subTasks) {
                 if (subTask.getId() == id) {
                     System.out.println(subTask);
+                    AbstractTask abstractTask = subTask;
+                    if (history.size() >= 10) {
+                        history.remove(0);
+                        history.add(abstractTask);
+                    } else {
+                        history.add(abstractTask);
+                    }
                     return;
                 }
             }
@@ -330,5 +357,13 @@ public class InMemoryTaskManager implements TaskManager{
         } else {
             System.out.println("Epic задача не найдена.");
         }
+    }
+
+
+
+    // implelemnting history mamanger interface
+    @Override
+    public List<AbstractTask> history() {
+        return history;
     }
 }
