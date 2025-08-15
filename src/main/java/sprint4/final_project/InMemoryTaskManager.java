@@ -39,7 +39,7 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
             } else if (userInput == 7) {
                 getAllSubtasksOfEpic();
             } else if (userInput == 8) {
-                System.out.println(history());
+                System.out.println(getHistory());
             }
         }
     }
@@ -363,7 +363,16 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
 
     // implelemnting history mamanger interface
     @Override
-    public List<AbstractTask> history() {
+    public List<AbstractTask> getHistory() {
         return history;
+    }
+
+    @Override
+    public void addTask(AbstractTask task) {
+    }
+
+    @Override
+    public void remove(int id) {
+
     }
 }
