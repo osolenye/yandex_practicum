@@ -12,7 +12,13 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
     private HashMap<Integer, EpicTask> epicTasks = new HashMap<>();
     private ArrayList<SubTask> subTasks = new ArrayList<>();
 
-    List<AbstractTask> history = new ArrayList<>();
+    HashMap<Integer, Node> nodes = new HashMap<>();
+    DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+    public Node head;
+    public Node tail;
+    public Node current;
+    int size = 0;
+
 
     @Override
     public void example() {
@@ -363,16 +369,56 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
 
     // implelemnting history mamanger interface
     @Override
-    public List<AbstractTask> getHistory() {
-        return history;
+    public List<Node> getHistory() {
+        return getTasks();
     }
 
     @Override
     public void addTask(AbstractTask task) {
+        Node node = new Node(task);
+        linkLast(node);
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(Node node) {
+        removeNode(node);
+    }
 
+
+
+    public void linkLast(Node node) {
+        if (size == 0) {
+            head = node;
+            tail = node;
+            size += 1;
+        } else {
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+                current.next = node;
+                size += 1;
+            }
+        }
+    }
+
+    public ArrayList<Node> getTasks() {
+        ArrayList<Node> list = new ArrayList<>();
+        Node current = head;
+        while (current.next != null) {
+            list.add(current);
+            current = current.next;
+        }
+        return list;
+    }
+
+    public void removeNode(Node node) {
+        if (node == head) {
+            head = head.next;
+        }
+        if (node == tail) {
+            tail = tail.prev;
+        }
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
     }
 }

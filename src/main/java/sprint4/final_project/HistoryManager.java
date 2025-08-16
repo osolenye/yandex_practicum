@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface HistoryManager {
-    List<AbstractTask> history = new ArrayList<>();
 
-    List<AbstractTask> getHistory();
+    List<Node> getHistory();
     void addTask(AbstractTask task);
-    void remove(int id);
+    void remove(Node node);
 }

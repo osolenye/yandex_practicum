@@ -1,13 +1,13 @@
 package sprint4.final_project;
 
 public class Node<T> {
-    public Node head;
-    public Node tail;
+    public Node next;
+    public Node prev;
     public T data;
 
-    public Node(Node head, Node tail, T data) {
-        this.head = head;
-        this.tail = tail;
+    public Node(T data) {
+        this.next = null;
+        this.prev = null;
         this.data = data;
     }
 }
