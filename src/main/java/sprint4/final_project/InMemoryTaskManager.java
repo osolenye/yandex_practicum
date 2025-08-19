@@ -45,14 +45,9 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
             } else if (userInput == 7) {
                 getAllSubtasksOfEpic();
             } else if (userInput == 8) {
-                System.out.println(getHistory().toString());
-            } else if (userInput == 9) {
-                System.out.println(nodes.toString());
-            } else if (userInput == 10) {
-                Node current = head;
-                while (current != null) {
-                    System.out.println(current);
-                    current = current.next;
+                ArrayList<Node> list = getHistory();
+                for (Node node: list) {
+                    System.out.println(node.data.toString());
                 }
             }
         }
@@ -68,8 +63,6 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         System.out.println("Чтобы удалить все задачи нажмите 6");
         System.out.println("Чтобы получить все подзадачи эпика нажмите 7");
         System.out.println("Чтобы получить историю просмотра задач нажмите 8");
-        System.out.println("Чтобы вывести словарь истории нажмите 9");
-        System.out.println("Чтобы вывести связный список истории нажмите 10");
         System.out.println("Чтобы выйти из программы нажмите 0");
     }
 
@@ -382,8 +375,9 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
 
     // implelemnting history mamanger interface
     @Override
-    public List<Node> getHistory() {
-        return getTasks();
+    public ArrayList<Node> getHistory() {
+        ArrayList<Node> list = getTasks();
+        return list;
     }
 
     @Override
@@ -417,7 +411,7 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
     public ArrayList<Node> getTasks() {
         ArrayList<Node> list = new ArrayList<>();
         Node current = head;
-        while (current.next != null) {
+        while (current != null) {
             list.add(current);
             current = current.next;
         }
@@ -425,13 +419,11 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
     }
 
     public void removeNode(Node node) {
-        if (node == head) {
-            head = head.next;
-        }
-        if (node == tail) {
-            tail = tail.prev;
-        }
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
+        try {
+            node.prev.next = node.next;
+        } catch (Exception e) {}
+        try {
+            node.next.prev = node.prev;
+        } catch (Exception e) {}
     }
 }
