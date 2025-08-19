@@ -281,11 +281,10 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
                     AbstractTask abstractTask = task;
                     if (nodes.containsKey(id)) {
                         removeNode(nodes.get(id));
-                    } else {
-                        Node node = new Node(abstractTask);
-                        nodes.put(id, node);
-                        linkLast(node);
                     }
+                    Node node = new Node(abstractTask);
+                    nodes.put(id, node);
+                    linkLast(node);
                     return;
                 }
             }
@@ -297,11 +296,10 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
                 AbstractTask abstractTask = epicTask;
                 if (nodes.containsKey(id)) {
                     removeNode(nodes.get(id));
-                } else {
-                    Node node = new Node(abstractTask);
-                    nodes.put(id, node);
-                    linkLast(node);
                 }
+                Node node = new Node(abstractTask);
+                nodes.put(id, node);
+                linkLast(node);
             } else {
                 System.out.println("Epic задача не найдена");
             }
@@ -312,11 +310,10 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
                     AbstractTask abstractTask = subTask;
                     if (nodes.containsKey(id)) {
                         removeNode(nodes.get(id));
-                    } else {
-                        Node node = new Node(abstractTask);
-                        nodes.put(id, node);
-                        linkLast(node);
                     }
+                    Node node = new Node(abstractTask);
+                    nodes.put(id, node);
+                    linkLast(node);
                     return;
                 }
             }
@@ -397,15 +394,12 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         if (size == 0) {
             head = node;
             tail = node;
-            size += 1;
         } else {
-            Node current = head;
-            while (current.next != null) {
-                current = current.next;
-                current.next = node;
-                size += 1;
-            }
+            tail.next = node;   // связываем старый хвост с новым узлом
+            node.prev = tail;   // связываем новый узел с предыдущим хвостом
+            tail = node;        // обновляем хвост
         }
+        size++;
     }
 
     public ArrayList<Node> getTasks() {
