@@ -45,7 +45,15 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
             } else if (userInput == 7) {
                 getAllSubtasksOfEpic();
             } else if (userInput == 8) {
-                System.out.println(getHistory());
+                System.out.println(getHistory().toString());
+            } else if (userInput == 9) {
+                System.out.println(nodes.toString());
+            } else if (userInput == 10) {
+                Node current = head;
+                while (current != null) {
+                    System.out.println(current);
+                    current = current.next;
+                }
             }
         }
     }
@@ -60,6 +68,8 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         System.out.println("Чтобы удалить все задачи нажмите 6");
         System.out.println("Чтобы получить все подзадачи эпика нажмите 7");
         System.out.println("Чтобы получить историю просмотра задач нажмите 8");
+        System.out.println("Чтобы вывести словарь истории нажмите 9");
+        System.out.println("Чтобы вывести связный список истории нажмите 10");
         System.out.println("Чтобы выйти из программы нажмите 0");
     }
 
@@ -276,11 +286,12 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
                 if (task.getId() == id) {
                     System.out.println(task);
                     AbstractTask abstractTask = task;
-                    if (history.size() >= 10) {
-                        history.remove(0);
-                        history.add(abstractTask);
+                    if (nodes.containsKey(id)) {
+                        removeNode(nodes.get(id));
                     } else {
-                        history.add(abstractTask);
+                        Node node = new Node(abstractTask);
+                        nodes.put(id, node);
+                        linkLast(node);
                     }
                     return;
                 }
@@ -291,11 +302,12 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
             if (epicTask != null) {
                 System.out.println(epicTask);
                 AbstractTask abstractTask = epicTask;
-                if (history.size() >= 10) {
-                    history.remove(0);
-                    history.add(abstractTask);
+                if (nodes.containsKey(id)) {
+                    removeNode(nodes.get(id));
                 } else {
-                    history.add(abstractTask);
+                    Node node = new Node(abstractTask);
+                    nodes.put(id, node);
+                    linkLast(node);
                 }
             } else {
                 System.out.println("Epic задача не найдена");
@@ -305,11 +317,12 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
                 if (subTask.getId() == id) {
                     System.out.println(subTask);
                     AbstractTask abstractTask = subTask;
-                    if (history.size() >= 10) {
-                        history.remove(0);
-                        history.add(abstractTask);
+                    if (nodes.containsKey(id)) {
+                        removeNode(nodes.get(id));
                     } else {
-                        history.add(abstractTask);
+                        Node node = new Node(abstractTask);
+                        nodes.put(id, node);
+                        linkLast(node);
                     }
                     return;
                 }
