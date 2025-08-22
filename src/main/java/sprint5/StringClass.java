@@ -1,5 +1,7 @@
 package sprint5;
 
+import java.util.Arrays;
+
 public class StringClass {
     public static void main(String[] args) {
         // literal: String str = "sdf";  via class: String str = new Class("asdf");
@@ -22,5 +24,42 @@ public class StringClass {
 
         String gettingChar = "sybau";
         System.out.println(gettingChar.charAt(1));
+
+        System.out.println(uniqueSubstring("раз два три раз", "раз")); 
+
+        // getting a substring by the index
+        String masterString = "Half life 2";
+        System.out.println(masterString.substring(2, 4));
+
+        // changing string even tho they are immutable bruh
+        String changeString = "one, two, three, one";
+        System.out.println(changeString.replace("one", "has been changed"));
+
+        //StringBuilder class hurray
+        StringBuilder stringBuilder = new StringBuilder(100); //can add the starting size
+        stringBuilder.append("one, two, three, one"); // reallocated memory when added values
+        System.out.println(stringBuilder);
+
+        // breaking a string sentence
+        String excellent = "Bob Sapp, SADF SDF, DFdfj, SDF, ADFFD sdfdjdj, DSFD DFDFA, DFDDFDF";
+        String[] excellentArray = excellent.split(",");
+        System.out.println(Arrays.toString(excellentArray));
+        String regexRules = "lsjflsk ? jdflasd ? lksdfkldsa ? sjfds ? sdjfl";
+        String[] regexRulesArray = regexRules.split("\\?"); // some symbols can't be used as a regex argument
+        System.out.println(Arrays.toString(regexRulesArray));
+
+        // making a string out of array of strings
+        String[] arrayToJoin = new String[]{
+                "lkjasdf",
+                "klajsdlfkas",
+                "alskdjfsld"
+                };
+        String joinedArray = String.join(" ", arrayToJoin); // can take any amount of arguments after delimiter - called varargs
+        System.out.println(joinedArray);
+    }
+
+    static boolean uniqueSubstring(String str, String subStr) {
+        // checking the indexes if they have different indexes and if they do there are more than one substr
+        return str.indexOf(subStr) == str.lastIndexOf(subStr);
     }
 }
