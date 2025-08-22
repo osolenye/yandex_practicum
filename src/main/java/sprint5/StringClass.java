@@ -56,6 +56,11 @@ public class StringClass {
                 };
         String joinedArray = String.join(" ", arrayToJoin); // can take any amount of arguments after delimiter - called varargs
         System.out.println(joinedArray);
+
+
+        //String formatting
+        String[] trafficLights = {"red", "green", "yellow"};
+        System.out.printf("All the lights: %s %s %s", trafficLights[0], trafficLights[1], trafficLights[2]); //printf to format out
     }
 
     static boolean uniqueSubstring(String str, String subStr) {
