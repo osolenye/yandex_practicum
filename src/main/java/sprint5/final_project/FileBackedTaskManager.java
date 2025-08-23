@@ -14,7 +14,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
 
     @Override
     public void createTask() {
-
+        super.createTask();
     }
 
     @Override
@@ -34,12 +34,12 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
 
     @Override
     public void printTasks() {
-
+        super.printTasks();
     }
 
     @Override
     public void changeTask() {
-
+        super.changeTask();
     }
 
     @Override
@@ -74,8 +74,11 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
 
     @Override
     public void getAllSubtasksOfEpic() {
-
+        super.getAllSubtasksOfEpic();
     }
 
 
+    public void save(AbstractTask task) {
+
+    }
 }
