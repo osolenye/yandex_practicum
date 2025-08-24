@@ -166,7 +166,7 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
     }
 
     @Override
-    public void changeSimpleTask() {
+    public Task changeSimpleTask() {
         System.out.println("Введите айди задачи:");
         int taskId = scanner.nextInt();
         scanner.nextLine();
@@ -197,10 +197,12 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         taskToChange.setStatus(taskStatus);
         taskToChange.setId(hashCode());
         tasks.add(taskToChange);
+
+        return taskToChange;
     }
 
     @Override
-    public void changeEpicTask() {
+    public EpicTask changeEpicTask() {
         System.out.println("Введите айди задачи:");
         int taskId = scanner.nextInt();
         scanner.nextLine();
@@ -233,10 +235,12 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         taskToChange.setStatus(taskStatus);
         taskToChange.setId(hashCode());
         epicTasks.put(taskToChange.getId(), taskToChange);
+
+        return taskToChange;
     }
 
     @Override
-    public void changeSubTask() {
+    public SubTask changeSubTask() {
         System.out.println("Введите айди задачи:");
         int taskId = scanner.nextInt();
         scanner.nextLine();
@@ -267,6 +271,8 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         taskToChange.setStatus(taskStatus);
         taskToChange.setId(hashCode());
         subTasks.add(taskToChange);
+
+        return taskToChange;
     }
 
     @Override

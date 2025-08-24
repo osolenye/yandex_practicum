@@ -17,11 +17,11 @@ public interface TaskManager {
 
     void changeTask();
 
-    void changeSimpleTask();
+    Task changeSimpleTask();
 
-    void changeEpicTask();
+    EpicTask changeEpicTask();
 
-    void changeSubTask();
+    SubTask changeSubTask();
 
     void getTaskById();
 
