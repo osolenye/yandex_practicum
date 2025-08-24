@@ -83,7 +83,7 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
     }
 
     @Override
-    public void createSimpleTask() {
+    public Task createSimpleTask() {
         System.out.println("Имя задачи:");
         String name = scanner.nextLine();
 
@@ -92,9 +92,11 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
 
         Task task = new Task(name, description);
         tasks.add(task);
+
+        return task;
     }
     @Override
-    public void createEpicTask() {
+    public EpicTask createEpicTask() {
         System.out.println("Имя задачи:");
         String name = scanner.nextLine();
 
@@ -103,10 +105,12 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
 
         EpicTask epicTask = new EpicTask(name, description);
         epicTasks.put(epicTask.getId(), epicTask);
+
+        return epicTask;
     }
 
     @Override
-    public void createSubTask() {
+    public SubTask createSubTask() {
         System.out.println("Имя задачи:");
         String name = scanner.nextLine();
 
@@ -123,6 +127,8 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         SubTask subTask = new SubTask(name, description, epicTask);
 
         subTasks.add(subTask);
+
+        return subTask;
     }
 
     @Override

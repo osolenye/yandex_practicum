@@ -7,11 +7,11 @@ public interface TaskManager {
 
     void createTask();
 
-    void createSimpleTask();
+    Task createSimpleTask();
 
-    void createEpicTask();
+    EpicTask createEpicTask();
 
-    void createSubTask();
+    SubTask createSubTask();
 
     void printTasks();
 

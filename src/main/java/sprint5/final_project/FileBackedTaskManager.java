@@ -8,6 +8,7 @@ import java.io.Writer;
 // instead of copying code from the class just inherit from it and get all code via DRY
 public class FileBackedTaskManager extends InMemoryTaskManager implements TaskManager{
     final String DATABASE_FILE = "/home/osolenye/programming/yandex_practicum/src/main/java/sprint5/final_project/database.csv";
+
     @Override
     public void example() {
         super.example();
@@ -24,18 +25,42 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     }
 
     @Override
-    public void createSimpleTask() {
+    public Task createSimpleTask() {
+        Task task =  super.createSimpleTask();
+        super.createTask();
+        try {
+            save(task);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
+        return task;
     }
 
     @Override
-    public void createEpicTask() {
+    public EpicTask createEpicTask() {
+        EpicTask task =  super.createEpicTask();
+        super.createEpicTask();
+        try {
+            save(task);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
+        return task;
     }
 
     @Override
-    public void createSubTask() {
+    public SubTask createSubTask() {
+        SubTask task =  super.createSubTask();
+        super.createSubTask();
+        try {
+            save(task);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
+        return task;
     }
 
     @Override
