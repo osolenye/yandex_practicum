@@ -88,16 +88,19 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     public Task changeSimpleTask() {
         Task task = super.changeSimpleTask();
 
+        return null;
     }
 
     @Override
     public EpicTask changeEpicTask() {
 
+        return null;
     }
 
     @Override
     public SubTask changeSubTask() {
 
+        return null;
     }
 
     @Override
