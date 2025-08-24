@@ -40,8 +40,6 @@ public class SubTask extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + "SubTask{" +
-                "epicTask=" + epicTask +
-                '}';
+        return String.format("%s, SubTask{epicTask=%s}", super.toString(), epicTask);
     }
 }

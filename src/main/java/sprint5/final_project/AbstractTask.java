@@ -70,6 +70,7 @@ public class AbstractTask {
 
     @Override
     public String toString() {
-        return "Task{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", id=" + id + ", status=" + status + '}';
+        return String.format("Task{name='%s', description='%s', id=%d, status=%s}",
+                name, description, id, status);
     }
 }
