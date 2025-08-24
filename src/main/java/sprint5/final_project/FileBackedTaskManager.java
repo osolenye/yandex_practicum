@@ -4,10 +4,23 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 // instead of copying code from the class just inherit from it and get all code via DRY
 public class FileBackedTaskManager extends InMemoryTaskManager implements TaskManager{
     final String DATABASE_FILE = "/home/osolenye/programming/yandex_practicum/src/main/java/sprint5/final_project/database.csv";
+    private ArrayList<Task> tasks = new ArrayList<>();
+    private HashMap<Integer, EpicTask> epicTasks = new HashMap<>();
+    private ArrayList<SubTask> subTasks = new ArrayList<>();
+
+    HashMap<Integer, Node> nodes = new HashMap<>();
+    DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
+    public Node head;
+    public Node tail;
+    public Node current;
+    int size = 0;
+
 
     @Override
     public void example() {
@@ -27,20 +40,19 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     @Override
     public Task createSimpleTask() {
         Task task =  super.createSimpleTask();
-        super.createTask();
         try {
             save(task);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
+        System.out.println("createsimepltask");
         return task;
     }
 
     @Override
     public EpicTask createEpicTask() {
         EpicTask task =  super.createEpicTask();
-        super.createEpicTask();
         try {
             save(task);
         } catch (IOException ex) {
@@ -53,7 +65,6 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     @Override
     public SubTask createSubTask() {
         SubTask task =  super.createSubTask();
-        super.createSubTask();
         try {
             save(task);
         } catch (IOException ex) {
@@ -120,7 +131,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     }
 
     void writeTaskToDB(AbstractTask task) throws IOException {
-        StringBuilder stringBuilder = buildBasicString(task);
+        StringBuilder stringBuilder = buildBasicString(task, TaskType.TASK);
         stringBuilder.append(",");
         stringBuilder.append("null");
         stringBuilder.append(",");
@@ -129,7 +140,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     }
 
     void writeEpicTaskToDB(EpicTask task) throws IOException {
-        StringBuilder stringBuilder = buildBasicString(task);
+        StringBuilder stringBuilder = buildBasicString(task,  TaskType.EPIC);
         stringBuilder.append(",");
         stringBuilder.append(task.getSubTasks().toString());
         stringBuilder.append(",");
@@ -138,7 +149,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     }
 
     void writeSubTaskToDB(SubTask task) throws IOException {
-        StringBuilder stringBuilder = buildBasicString(task);
+        StringBuilder stringBuilder = buildBasicString(task,   TaskType.SUBTASK);
         stringBuilder.append(",");
         stringBuilder.append("null");
         stringBuilder.append(",");
@@ -149,14 +160,15 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
     void writeToDB(StringBuilder stringBuilder) throws IOException {
         try (Writer fileWriter = new FileWriter(DATABASE_FILE, true)) {
             fileWriter.write(stringBuilder.toString());
+            fileWriter.write("\n");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    StringBuilder buildBasicString(AbstractTask task) {
+    StringBuilder buildBasicString(AbstractTask task, TaskType type) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(TaskType.TASK.toString());
+        stringBuilder.append(type.toString());
         stringBuilder.append(",");
         stringBuilder.append(task.getId());
         stringBuilder.append(",");
