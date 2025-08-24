@@ -86,7 +86,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager implements TaskMa
 
     @Override
     public void changeSimpleTask() {
-
+        super.changeSimpleTask();
     }
 
     @Override

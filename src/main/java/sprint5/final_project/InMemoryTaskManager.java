@@ -195,6 +195,7 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         taskToChange.setName(name);
         taskToChange.setDescription(description);
         taskToChange.setStatus(taskStatus);
+        taskToChange.setId(hashCode());
         tasks.add(taskToChange);
     }
 
@@ -230,6 +231,7 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         taskToChange.setName(name);
         taskToChange.setDescription(description);
         taskToChange.setStatus(taskStatus);
+        taskToChange.setId(hashCode());
         epicTasks.put(taskToChange.getId(), taskToChange);
     }
 
@@ -263,6 +265,7 @@ public class InMemoryTaskManager implements TaskManager, HistoryManager {
         taskToChange.setName(name);
         taskToChange.setDescription(description);
         taskToChange.setStatus(taskStatus);
+        taskToChange.setId(hashCode());
         subTasks.add(taskToChange);
     }
 
