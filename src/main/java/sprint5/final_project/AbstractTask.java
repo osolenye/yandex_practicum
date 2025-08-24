@@ -70,7 +70,14 @@ public class AbstractTask {
 
     @Override
     public String toString() {
-        return String.format("Task{name='%s', description='%s', id=%d, status=%s}",
-                name, description, id, status);
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.append(", ");
+        sb.append(description);
+        sb.append(", ");
+        sb.append(id);
+        sb.append(", ");
+        sb.append(status);
+        return sb.toString();
     }
 }

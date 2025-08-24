@@ -41,6 +41,10 @@ public class EpicTask extends Task {
 
     @Override
     public String toString() {
-        return String.format("%s, EpicTask{subtasks=%s}", super.toString(), subTasks);
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toString());
+        sb.append(", ");
+        sb.append(subTasks.toString());
+        return sb.toString();
     }
 }
