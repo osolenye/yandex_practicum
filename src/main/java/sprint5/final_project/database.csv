@@ -1,1 +1,1 @@
-id,type,name,status,description,epic
+type,id,name,description,status,subtasks,epic

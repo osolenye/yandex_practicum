@@ -42,6 +42,8 @@ public class EpicTask extends Task {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append(TaskType.EPIC.toString());
+        sb.append(", ");
         sb.append(super.toString());
         sb.append(", ");
         sb.append(subTasks.toString());

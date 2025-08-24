@@ -71,11 +71,11 @@ public class AbstractTask {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append(id);
+        sb.append(", ");
         sb.append(name);
         sb.append(", ");
         sb.append(description);
-        sb.append(", ");
-        sb.append(id);
         sb.append(", ");
         sb.append(status);
         return sb.toString();
