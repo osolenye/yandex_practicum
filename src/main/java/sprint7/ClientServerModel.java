@@ -29,5 +29,7 @@ public class ClientServerModel {
         // content-length - requests body size
         // content-type - which type of data is being transferred
         // the body can be any. Most popular: json, file etc
+
+
     }
 }
