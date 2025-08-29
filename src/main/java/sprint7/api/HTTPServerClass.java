@@ -26,15 +26,15 @@ public class HTTPServerClass {
 }
 
 // creating a handler that will handle requests
-class HelloHandler implements HttpHandler {
-    // login of handling a request
-    @Override
-    public void handle(HttpExchange exchange) throws IOException {
-        String response = "Welcome to my server";
-        exchange.sendResponseHeaders(200, 0); // gives 200 code
-        // we can get outputStream to give an answer
-        try (OutputStream os = exchange.getResponseBody()) {
-            os.write(response.getBytes());
-        }
-    }
-}
+//class HelloHandler implements HttpHandler {
+//    // login of handling a request
+//    @Override
+//    public void handle(HttpExchange exchange) throws IOException {
+//        String response = "Welcome to my server";
+//        exchange.sendResponseHeaders(200, 0); // gives 200 code
+//        // we can get outputStream to give an answer
+//        try (OutputStream os = exchange.getResponseBody()) {
+//            os.write(response.getBytes());
+//        }
+//    }
+//}
