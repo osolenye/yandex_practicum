@@ -8,6 +8,7 @@ import java.time.Duration;
 
 public class HTTPClient {
     public static void main(String[] args) throws Exception{
+        // ALWAYS MAKE TRY CATCH AND HANDLE DIFFERENT STATUS CODE USING IF ELSE
         // HttpRequest defines the request to a server
         // HttpResponse defines the server's response.
         // HttpClient implements makes requests to a server defined by two above classes
